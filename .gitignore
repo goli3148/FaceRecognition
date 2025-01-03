@@ -2,3 +2,5 @@
 *.dat
 *.xml
 **/__pycache__
+data/
+openface/
