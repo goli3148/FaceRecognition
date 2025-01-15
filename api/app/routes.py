@@ -1,7 +1,7 @@
 from app import app, db
 import os
 from flask import request, redirect, url_for, jsonify
-from app.models import People
+from .database.models import People
 
 @app.route('/')
 def index():
@@ -28,6 +28,9 @@ def newFace():
 
 @app.route('/api/NewLabel')
 def getNewLabel():
-    query = db.session.query(People).order_by(People.id.asc()).all()[-1]
-    new_label = {'new label' : query.label + 1}
-    return jsonify(new_label)
+    try:
+        query = db.session.query(People).order_by(People.id.asc()).all()[-1]
+        new_label = {'new label' : query.label + 1}
+        return jsonify(new_label)
+    except:
+        return jsonify({'new label': 0})

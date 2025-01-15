@@ -8,7 +8,7 @@ class RequestManager:
         self.url = 'http://localhost:5000//api'
 
     def sendNewImage(self, image, label):
-        file_name = datetime.datetime.now().strftime('%Y%m%d%H%M')
+        file_name = datetime.datetime.now().strftime('%Y%m%d%H%M%S%f')
         file_dir = os.path.join('code', f'{file_name}.jpg')
         cv.imwrite(file_dir, image)
         file = {'file' : open(file_dir, 'rb')}
